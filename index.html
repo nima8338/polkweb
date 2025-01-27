@@ -30,12 +30,12 @@
             </li>
             <li>
               <a href="#valuesContainer" class="nav-item" aria-label="Culture"
-                >Our Value</a
+                >Values</a
               >
             </li>
             <li>
               <a href="#founder-section" class="nav-item" aria-label="Culture"
-                >Our Culture</a
+                >Culture</a
               >
             </li>
             <li>
@@ -48,10 +48,14 @@
             </li>
             <li>
               <a href="#our-work-section" class="nav-item" aria-label="Our Work"
-                >Work</a
+                >Our Work</a
               >
             </li>
-
+            <li>
+              <a href="#our-work-section" class="nav-item" aria-label="Our Work"
+                >Facilities</a
+              >
+            </li>
             <li>
               <a href="./media.html" class="nav-item media-item12" aria-label="Media"
                 >Media</a
@@ -106,12 +110,12 @@
           </li>
           <li>
             <a href="#valuesContainer" class="nav-item" aria-label="Culture"
-              >Our Value</a
+              >Values</a
             >
           </li>
           <li>
             <a href="#founder-section" class="nav-item" aria-label="Culture"
-              >Our Culture</a
+              >Culture</a
             >
           </li>
           <li>
@@ -121,7 +125,12 @@
           </li>
           <li>
             <a href="#our-work-section" class="nav-item" aria-label="Our Work"
-              >Work</a
+              >Our Work</a
+            >
+          </li>
+          <li>
+            <a href="#our-work-section" class="nav-item" aria-label="Our Work"
+              >Facilities</a
             >
           </li>
 
@@ -426,11 +435,20 @@
             </figure>
             <h6 class="work-item-details">Sports & Public Space</h6>
           </div>
+          <div class="work-item">
+            <figure class="work-image">
+              <img
+                src="./assets/images/civil.jpeg"
+                alt="Work image"
+              />
+            </figure>
+            <h6 class="work-item-details">Civil Construction</h6>
+          </div>
 
           <div class="work-item">
             <figure class="work-image">
               <img
-                src="./assets/images/Department of Defense Logo.svg"
+                src="./assets/images/Department of Defense Logo.jpeg"
                 alt="Work image"
               />
             </figure>
@@ -763,158 +781,131 @@
     <script type="text/javascript" src="./assets/js/plugins.js"></script>
     <script>
       const values = [
-        "Excellence",
-        "Teamwork",
-        "Collaboration",
-        "Trust",
-        "Integrity",
-        "Diversity",
-        "Servant Leadership",
-      ];
+  "Excellence",
+  "Teamwork",
+  "Collaboration",
+  "Trust",
+  "Integrity",
+  "Diversity",
+  "Servant Leadership",
+];
 
-      const descriptions = {
-        Excellence:
-          "Excellence is at the heart of all we do; we deliver the highest quality in every project.",
-        Teamwork:
-          "Teamwork and Collaboration are the foundation of our success, fostering unity and shared goals.",
-        Collaboration:
-          "Working together with our Architects, Owners, and Trade Partners to align efforts and achieve a common goal.",
-        Trust:
-          "We build relationships based on Trust, Integrity, and Transparency, ensuring confidence in every interaction",
-        Integrity:
-          "We are community to doing what is right and maintaining strong ethical standards.",
-        Diversity:
-          "Create an environment that supports different viewpoints and ideas, leading to more innovative solutions that drive success.",
-        "Servant Leadership":
-          "Servant Leadership drives us to uplift our team, clients, and community, focusing on their success as a measure of our own.",
-      };
+const descriptions = {
+  Excellence:
+    "Excellence is at the heart of all we do; we deliver the highest quality in every project.",
+  Teamwork:
+    "Teamwork and Collaboration are the foundation of our success, fostering unity and shared goals.",
+  Collaboration:
+    "Working together with our Architects, Owners, and Trade Partners to align efforts and achieve a common goal.",
+  Trust:
+    "We build relationships based on Trust, Integrity, and Transparency, ensuring confidence in every interaction",
+  Integrity:
+    "We are community to doing what is right and maintaining strong ethical standards.",
+  Diversity:
+    "Create an environment that supports different viewpoints and ideas, leading to more innovative solutions that drive success.",
+  "Servant Leadership":
+    "Servant Leadership drives us to uplift our team, clients, and community, focusing on their success as a measure of our own.",
+};
 
-      function createValueElement(value) {
-        const valueItem = document.createElement("div");
-        valueItem.className = "value-item";
+function createValueElement(value) {
+  const valueItem = document.createElement("div");
+  valueItem.className = "value-item";
 
-        const word = document.createElement("div");
-        word.className = "value-word";
-        word.textContent = value;
+  const word = document.createElement("div");
+  word.className = "value-word";
+  word.textContent = value;
 
-        const description = document.createElement("div");
-        description.className = "value-description";
-        description.textContent = descriptions[value];
+  const description = document.createElement("div");
+  description.className = "value-description";
+  // Add special class for Servant Leadership
+  if (value === "Servant Leadership") {
+    description.className = "value-description servant-leadership-popup";
+  }
+  description.textContent = descriptions[value];
 
-        valueItem.appendChild(word);
-        valueItem.appendChild(description);
+  valueItem.appendChild(word);
+  valueItem.appendChild(description);
 
-        return valueItem;
+  return valueItem;
+}
+
+function positionValues() {
+  const container = document.getElementById("valuesContainer");
+  const centerX = container.offsetWidth / 2;
+  const centerY = container.offsetHeight / 2;
+
+  // Clear container except for center value
+  const centerValue = container.querySelector(".center-value");
+  container.innerHTML = "";
+  container.appendChild(centerValue);
+
+  // Calculate base radius based on container size and screen width
+  const baseRadius = Math.min(
+    container.offsetWidth * 0.4,  // Increased from 0.35 to 0.4 for more spacing
+    container.offsetHeight * 0.4,
+    window.innerWidth < 768 ? 180 : 350  // Increased radius values
+  );
+
+  // Add slight offset to create visual interest while maintaining consistent positions
+  const offsetAngle = Math.PI / values.length;  // Fixed offset angle
+
+  values.forEach((value, index) => {
+    const valueElement = createValueElement(value);
+    container.appendChild(valueElement);
+
+    // Calculate position with fixed offset
+    const angle = (index * ((2 * Math.PI) / values.length)) + offsetAngle;
+    
+    // Calculate position with increased spacing
+    const x = centerX + baseRadius * Math.cos(angle) - (window.innerWidth < 768 ? 60 : 90);
+    const y = centerY + baseRadius * Math.sin(angle) - (window.innerWidth < 768 ? 30 : 50);
+
+    valueElement.style.left = `${x}px`;
+    valueElement.style.top = `${y}px`;
+
+    // Add subtle floating animation
+    const floatDuration = 4000;
+    const floatDistance = window.innerWidth < 768 ? 2 : 3;
+
+    const floatAnimation = valueElement.animate(
+      [
+        { transform: "translateY(0px)" },
+        { transform: `translateY(-${floatDistance}px)` },
+        { transform: "translateY(0px)" },
+      ],
+      {
+        duration: floatDuration,
+        iterations: Infinity,
+        direction: "alternate",
+        easing: "ease-in-out",
+        delay: index * 500,  // Staggered delay based on index
       }
+    );
 
-      function getRandomOffset(min, max) {
-        return Math.random() * (max - min) + min;
+    // Add subtle side-to-side animation
+    const sideDistance = window.innerWidth < 768 ? 1 : 2;
+    const sideDuration = 5000;
+
+    const sideAnimation = valueElement.animate(
+      [
+        { transform: "translateX(0px)" },
+        { transform: `translateX(${sideDistance}px)` },
+        { transform: "translateX(0px)" },
+      ],
+      {
+        duration: sideDuration,
+        iterations: Infinity,
+        direction: "alternate",
+        easing: "ease-in-out",
+        delay: index * 500,  // Staggered delay based on index
       }
+    );
+  });
+}
 
-      function checkOverlap(positions, newPos, minDistance = 100) {
-        for (const pos of positions) {
-          const dx = newPos.x - pos.x;
-          const dy = newPos.y - pos.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < minDistance) return true;
-        }
-        return false;
-      }
-
-      function positionValues() {
-        const container = document.getElementById("valuesContainer");
-        const centerX = container.offsetWidth / 2;
-        const centerY = container.offsetHeight / 2;
-
-        const centerValue = container.querySelector(".center-value");
-        container.innerHTML = "";
-        container.appendChild(centerValue);
-
-        // Adjust radius based on screen size
-        const baseRadius = Math.min(
-          container.offsetWidth * 0.35,
-          container.offsetHeight * 0.35,
-          window.innerWidth < 768 ? 150 : 300
-        );
-
-        const positions = [];
-
-        values.forEach((value, index) => {
-          const valueElement = createValueElement(value);
-          container.appendChild(valueElement);
-
-          let finalX,
-            finalY,
-            attempts = 0;
-          do {
-            const radiusOffset = getRandomOffset(-20, 20) + attempts * 5;
-            const angleOffset = getRandomOffset(-0.1, 0.1);
-            const radius = baseRadius + radiusOffset;
-
-            const angle = index * ((2 * Math.PI) / values.length) + angleOffset;
-            const x =
-              centerX +
-              radius * Math.cos(angle) -
-              (window.innerWidth < 768 ? 50 : 75);
-            const y =
-              centerY +
-              radius * Math.sin(angle) -
-              (window.innerWidth < 768 ? 25 : 40);
-
-            finalX = x + getRandomOffset(-25, 25);
-            finalY = y + getRandomOffset(-25, 25);
-            attempts++;
-          } while (
-            checkOverlap(positions, { x: finalX, y: finalY }) &&
-            attempts < 10
-          );
-
-          positions.push({ x: finalX, y: finalY });
-
-          valueElement.style.left = `${finalX}px`;
-          valueElement.style.top = `${finalY}px`;
-
-          const floatDuration = 3000 + Math.random() * 2000;
-          const floatDelay = Math.random() * 2000;
-          const floatDistance = window.innerWidth < 768 ? 2 : 4;
-
-          const floatAnimation = valueElement.animate(
-            [
-              { transform: "translateY(0px)" },
-              { transform: `translateY(-${floatDistance}px)` },
-              { transform: "translateY(0px)" },
-            ],
-            {
-              duration: floatDuration,
-              iterations: Infinity,
-              direction: "alternate",
-              easing: "ease-in-out",
-              delay: floatDelay,
-            }
-          );
-
-          const sideDistance = window.innerWidth < 768 ? 1 : 2;
-          const sideDuration = 4000 + Math.random() * 2000;
-
-          const sideAnimation = valueElement.animate(
-            [
-              { transform: "translateX(0px)" },
-              { transform: `translateX(${sideDistance}px)` },
-              { transform: "translateX(0px)" },
-            ],
-            {
-              duration: sideDuration,
-              iterations: Infinity,
-              direction: "alternate",
-              easing: "ease-in-out",
-              delay: Math.random() * 2000,
-            }
-          );
-        });
-      }
-
-      positionValues();
-      window.addEventListener("resize", positionValues);
+// Initial positioning and resize handling
+positionValues();
+window.addEventListener("resize", positionValues);
     </script>
     <script type="text/javascript" src="./assets/js/main.js"></script>
   </body>

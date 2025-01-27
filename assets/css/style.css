@@ -1369,6 +1369,7 @@ header {
 .value-description {
   position: absolute;
   color: rgb(0, 0, 0);
+  background: rgba(162, 162, 162, 0.5);
   padding: 15px;
   border-radius: 8px;
   width: 250px;
@@ -1387,6 +1388,10 @@ header {
 .value-item:hover .value-description {
   opacity: 1;
   visibility: visible;
+}
+.servant-leadership-popup {
+  top: 120%; /* Moves the popup lower */
+  margin-top: 20px; /* Additional spacing */
 }
 
 .value-item:hover .value-word {
