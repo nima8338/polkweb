@@ -1587,6 +1587,18 @@ header {
 .facilities-section {
   margin-top: 40px;
 }
+.estate{
+  color: var(--accent-color) !important;
+  font-family: var(--font-copperplate);
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+
+}
 .facilities-title {
   color: var(--accent-color) !important;
   font-family: var(--font-copperplate);
@@ -1607,7 +1619,6 @@ header {
   font-weight: 700;
   line-height: 130%;
   display: flex;
-  margin-top: 20px;
 }
 .facilities-map {
   margin-top: 30px;
@@ -1619,22 +1630,14 @@ header {
   margin-top: 40px;
   width: 100%;
 }
-.facilities-content .left {
-  color: var(--accent-color) !important;
-  font-family: var(--font-copperplate);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 160%;
-  display: flex;
-}
+
 
 .facilities-content ul {
   display: flex;
   flex-direction: column;
   gap: 16px;
   list-style-type: disc;
-  margin-bottom: 80px;
+  margin-bottom: 10px;
 }
 .facilities-content ul li {
   font-weight: 700;
