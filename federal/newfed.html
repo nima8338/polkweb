@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federal Contracts Details</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+    <style>
+        :root {
+            --text-pri: #262264;
+            --accent-color: #262264;
+            --primary-color: #fff;
+            --secondary-color: #d9d9d9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation Styles */
+        .navbar-container {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-logo img {
+            height: 50px;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-items li a {
+            text-decoration: none;
+            color: var(--text-pri);
+            font-size: 1.1rem;
+        }
+
+        #menu-open-btn, #menu-close-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            padding: 2rem;
+            transition: right 0.3s ease;
+            z-index: 2000;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 6rem 2rem 2rem;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-card {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            background: transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 2rem;
+        }
+
+        .project-title {
+            text-align: center;
+            font-size: 1.4rem;
+            color: var(--text-pri);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-pri);
+        }
+
+        /* Modal Content Styles */
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-header img {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .project-header-info {
+            flex-grow: 1;
+        }
+
+        .project-header-info h2 {
+            font-size: 2.5rem;
+            color: var(--text-pri);
+            margin-bottom: 2.5rem;
+            font-weight: bold;
+        }
+
+        .project-header-info p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .project-header-info ul {
+            list-style-type: disc;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-header-info li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .photo-gallery {
+            margin-top: 3rem;
+            border-top: 2px solid #eee;
+            padding-top: 3rem;
+        }
+
+        .photo-gallery h3 {
+            font-size: 1.8rem;
+            color: var(--text-pri);
+            margin-bottom: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            padding-bottom: 75%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 1200px) {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-items {
+                display: none;
+            }
+
+            #menu-open-btn {
+                display: block;
+            }
+
+            .sidebar {
+                display: block;
+            }
+
+            .sidebar .nav-items {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar-container">
+          <div class="container">
+            <a href="../index.html" class="site-logo">
+              <img
+                src="../assets/images/site-logo.svg"
+                alt="Polk Associates logo"
+              />
+            </a>
+  
+            <ul class="nav-items">
+              <li>
+                <a
+                  href="../index.html#our-mission-section"
+                  class="nav-item"
+                  aria-label="Mission"
+                  >Mission & Vision</a
+                >
+              </li>
+              <li>
+                <a href="../index.html#valuesContainer" class="nav-item" aria-label="Culture"
+                  >Values</a
+                >
+              </li>
+              <li>
+                <a href="../index.html#founder-section" class="nav-item" aria-label="Culture"
+                  >Culture</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../index.html#our-story-section"
+                  class="nav-item"
+                  aria-label="Our Story"
+                  >Our Story</a
+                >
+              </li>
+              <li>
+                <a href="../index.html#our-work-section" class="nav-item" aria-label="Our Work"
+                  >Our Work</a
+                >
+              </li>
+              <li>
+                <a href="../index.html#our-work-section" class="nav-item" aria-label="Our Work"
+                  >Facilities</a
+                >
+              </li>
+              <li>
+                <a href="../media.html" class="nav-item media-item12" aria-label="Media"
+                  >Media</a
+                >
+              </li>
+            </ul>
+            <button id="menu-open-btn" type="button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M13 18H20M4 6H20H4ZM4 12H20H4Z"
+                  stroke="#40E0D0"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </nav>
+        <!-- navbar start -->
+  
+        <!-- sidebar section start -->
+        <div class="sidebar">
+          <button id="menu-close-btn" type="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M6 6L18 18M6 18L18 6L6 18Z"
+                stroke="#3F3F46"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <ul class="nav-items">
+            <li>
+              <a href="../index.html#our-mission-section" class="nav-item" aria-label="Mission"
+                >Mission & Vision</a
+              >
+            </li>
+            <li>
+              <a href="../index.html#valuesContainer" class="nav-item" aria-label="Culture"
+                >Values</a
+              >
+            </li>
+            <li>
+              <a href="../index.html#founder-section" class="nav-item" aria-label="Culture"
+                >Culture</a
+              >
+            </li>
+            <li>
+              <a href="../index.html#our-story-section" class="nav-item" aria-label="Our Story"
+                >Our Story</a
+              >
+            </li>
+            <li>
+              <a href="../index.html#our-work-section" class="nav-item" aria-label="Our Work"
+                >Our Work</a
+              >
+            </li>
+            <li>
+              <a href="../index.html#our-work-section" class="nav-item" aria-label="Our Work"
+                >Facilities</a
+              >
+            </li>
+  
+            <li>
+              <a href="../media.html" class="nav-item" aria-label="Media">Media</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+
+    <main class="main-content">
+        <div class="project-grid" id="projectGrid"></div>
+    </main>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">&times;</button>
+            <div id="projectDetails" class="project-details"></div>
+        </div>
+    </div>
+
+    <script>
+        const projects = [
+            {
+                id: 'airforce',
+                title: 'Air Force',
+                image: 'States we serve (6).png',
+                details: `
+                    <p>Polk & Associates proudly supported the U.S. Air Force by completing a critical Main Motor Drive Coupling Replacement. This project involved replacing and upgrading essential motor drive components to ensure the continued functionality and reliability of key Air Force equipment. Given the high-stakes nature of this work, our team prioritized precision, adherence to safety standards, and minimal downtime to maintain operational readiness.
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'corps',
+                title: 'U.S. Corps of Engineers',
+                image: 'us-army-corps-of-engineers.svg',
+                details: `
+                    <p>Polk & Associates was honored to partner with the U.S. Corps of Engineers on the Fisk Scour Repair project along the St. Francis River in Missouri. This vital initiative focused on addressing erosion issues caused by river currents that threatened the integrity of the riverbank and surrounding infrastructure. Our team employed advanced engineering techniques and materials to stabilize the affected areas and mitigate further erosion, ensuring the long-term protection of the river’s ecosystem and adjacent structures.</p>
+
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'gsa',
+                title: 'GSA',
+                image: 'image (1).png',
+                details: `
+                    <p>Polk & Associates was proud to undertake the interior painting and beautification project for the Ed Jones Federal Building. This initiative aimed to enhance the aesthetic appeal and functionality of the federal facility, creating a more inviting environment for employees and visitors alike. Our team meticulously planned and executed the painting and refurbishing work, selecting high-quality materials and finishes that align with the building’s architectural style and purpose.
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'usda',
+                title: 'USDA',
+                image: 'image (2) copy.png',
+                details: `
+                    <p>Polk & Associates was honored to work with the USDA on the installation of attic draft partitions at the Jacobs Creek Job Corps facility. This project aimed to improve energy efficiency and enhance the overall comfort of the building by minimizing air leakage in the attic space. Our skilled team undertook the installation process with a focus on precision and quality, ensuring that the partitions were correctly fitted and met the project’s specifications.
+
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'faa',
+                title: 'Federal Aviation Agency',
+                image: 'image.png',
+                details: `
+                    <p>Polk & Associates proudly completed the interior painting and beautification project for the Air Traffic Control Tower under the Federal Aviation Agency. This initiative focused on enhancing the aesthetic and functional aspects of the control tower, creating a professional and welcoming environment for air traffic controllers and staff. Our team utilized high-quality, durable paints and finishes that not only uplifted the space but also met the stringent safety and operational requirements of such a critical facility.
+
+
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+
+            {
+                id: 'va',
+                title: 'Veterans Affair',
+                image: 'States we serve (9).png',
+                details: `
+                    <p>Polk & Associates was proud to undertake the framing and drywall installation for the Domiciliary Rehabilitation Building for Veterans Affairs. This project was designed to create a supportive and functional environment for veterans undergoing rehabilitation, focusing on their comfort and recovery. Our experienced team worked diligently to ensure that the framing met all structural requirements while also facilitating a seamless installation of drywall, creating a solid foundation for the interior spaces.
+
+
+
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'navfac',
+                title: 'Naval Facilities Engineering Systems Command',
+                image: 'NAVFAC.png',
+                details: `
+                    <p>
+
+
+
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'unicor',
+                title: 'Federal Prison Industries, Inc',
+                image: 'UNICOR.png',
+                details: `
+                    <p>
+
+
+
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'fbi',
+                title: 'Federal Bureau of Investigation',
+                image: 'fbi.svg',
+                details: `
+                    <p>
+
+
+
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'homeland',
+                title: 'U.S. Department of Homeland Security',
+                image: 'homeland.svg',
+                details: `
+                    <p>
+
+
+
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+            {
+                id: 'army',
+                title: 'United States Army',
+                image: 'army.png',
+                details: `
+                    <p>
+
+
+
+</p>
+                    
+                `,
+                photos: [
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600',
+                    '/api/placeholder/800/600'
+                ]
+            },
+        ];
+
+        function createProjectCards() {
+            const grid = document.getElementById('projectGrid');
+            projects.forEach(project => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'project-card-wrapper';
+                
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <div class="project-content">
+                        <img src="${project.image}" alt="${project.title}" class="project-image">
+                    </div>
+                `;
+                card.onclick = () => showProjectDetails(project);
+                
+                const title = document.createElement('h3');
+                title.className = 'project-title';
+                title.textContent = project.title;
+                
+                wrapper.appendChild(card);
+                wrapper.appendChild(title);
+                grid.appendChild(wrapper);
+            });
+        }
+
+        function showProjectDetails(project) {
+            const modal = document.getElementById('projectModal');
+            const details = document.getElementById('projectDetails');
+            details.innerHTML = `
+                <div class="project-header">
+                    <img src="${project.image}" alt="${project.title}">
+                    <div class="project-header-info">
+                        <h2>${project.title}</h2>
+                        <div class="project-details-content">
+                            ${project.details}
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-gallery">
+                    <h3>Project Gallery</h3>
+                    <div class="gallery-grid">
+                        ${project.photos.map(photo => `
+                            <div class="gallery-item">
+                                <img src="${photo}" alt="Project photo">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Mobile menu functionality
+        document.getElementById('menu-open-btn').addEventListener('click', () => {
+            document.querySelector('.sidebar').classList.add('active');
+        });
+
+        document.getElementById('menu-close-btn').addEventListener('click', () => {
+            document.querySelector('.sidebar').classList.remove('active');
+        });
+
+        document.addEventListener('DOMContentLoaded', createProjectCards);
+    </script>
+</body>
+</html>
