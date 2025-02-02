@@ -5,565 +5,237 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Civil Construction</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-@import url("./plugins/bootstrap-5.3.3.min.css");
-@import url("./plugins/owl.carousel.min.css");
-@import url("./plugins/owl.theme.default.min.css");
-
-/* import all fonts start */
-@font-face {
-  font-family: "brushlie demo";
-  src: url("../fonts/brushlie demo.otf");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Garamond";
-  src: url("../fonts/Garamond.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Copperplate Gothic Std";
-  src: url("../fonts/CopperplateGothicStd-29AB.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Garet";
-  src: url("../fonts/Garet-Book.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sauce Sans";
-  src: url("../fonts/OpenSauceSans-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sauce Sans";
-  src: url("../fonts/OpenSauceSans-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sauce Sans";
-  src: url("../fonts/OpenSauceSans-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sauce Sans";
-  src: url("../fonts/OpenSauceSans-SemiBold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sauce Sans";
-  src: url("../fonts/OpenSauceSans-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Open Sauce Sans";
-  src: url("../fonts/OpenSauceSans-Italic.woff") format("woff");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-/* import all fonts end */
-
-/* root styles start */
-:root {
-  --text-pri: #262264;
-  --text-sec: #fff;
-
-  --accent-color: #262264;
-
-  --primary-color: #fff;
-  --secoundary-color: #d9d9d9;
-
-  --gradiant-first: #fff3f3;
-  --gradiant-last: #d9d9d9;
-
-  --gradiant-background: linear-gradient(105deg, #fff3f3 0%, #d9d9d9 100%);
-
-  --font-garamond: "Garamond";
-  --font-copperplate: "Copperplate Gothic Std";
-  --font-garet: "Garet";
-  --font-open-sauce: "Open Sauce Sans";
-  --font-brushlie-demo: "brushlie demo";
-}
+        :root {
+            --text-pri: #262264;
+            --text-sec: #fff;
+            --accent-color: #262264;
+            --primary-color: #fff;
+            --secoundary-color: #d9d9d9;
+            --font-garamond: "Garamond";
+            --font-copperplate: "Copperplate Gothic Std";
+            --font-open-sauce: "Open Sauce Sans";
+        }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
+        
         }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            height: 60px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-family: var(--font-garamond);
-            color: #1a237e;
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #1a237e;
-        }
-
         .main-content {
-            padding: 7rem 2rem 2rem;
+            padding: 3rem 2rem 2rem;
             background: #f5f5f5;
         }
 
         .title {
-            color: #262264;
+            color: var(--text-pri);
             font-family: var(--font-copperplate);
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             text-align: left;
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1;
         }
+
         .title span {
             font-family: var(--font-copperplate);
             display: block;
         }
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
+            grid-template-columns: repeat(2, minmax(400px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
+        @media (max-width: 1200px) {
+            .cards-container {
+                grid-template-columns: repeat(2, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .cards-container {
+                grid-template-columns: minmax(300px, 600px);
+                justify-content: center;
+            }
+        }
         .card {
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
+            position: relative;
             width: 100%;
+            padding-bottom: 100%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
         }
 
-        .image-container {
+        .card-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            position: relative;
-            padding-bottom: 100%; /* Makes container square */
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .card-title {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-description {
+            color: var(--text-pri);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-pri);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-header img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .project-header-info h2 {
+            font-size: 2.5rem;
+            color: var(--text-pri);
+            margin-bottom: 2.5rem;
+            font-family: var(--font-copperplate);
+        }
+
+        .photo-gallery {
+            margin-top: 3rem;
+            border-top: 2px solid #eee;
+            padding-top: 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            padding-bottom: 75%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            background: #f5f5f5;
-            border-radius: 8px;
-        }
-
-        .card-content {
-            margin-top: 0.5rem;
-        }
-
-        .card-title {
-            color: #666;
-            margin-bottom: 0.25rem;
-            font-size: 0.9rem;
-            text-align: left;
-        }
-
-        .card-description {
-            color: #1a237e;
-            font-weight: 500;
-            text-align: left;
-            line-height: 1.2;
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
+
+
+            .project-header {
                 flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
 
-            .nav-links.active {
-                display: flex;
+            .project-header img {
+                width: 100%;
+                height: auto;
             }
 
-            .hamburger {
-                display: block;
-            }
-
-            .cards-container {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
-            /* contact section styles start */
-.contact-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-  -ms-flex-align: end;
-  align-items: flex-end;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-  -ms-flex-direction: column-reverse;
-  flex-direction: column-reverse;
-  margin-top: 70px;
-  gap: 10px;
-}
-.contact-section .contact-image-wrapper {
-  position: relative;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-.contact-section .contact-image-wrapper .box-section-title {
-  left: -30%;
-}
-
-.contact-section .contact-image {
-  max-width: 400px;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 10px;
-}
-.contact-section .contact-image img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-.contact-section .contact-site-logo {
-  max-width: 200px;
-  width: 100%;
-}
-.contact-section .contact-details > * + * {
-  margin-top: 16px;
-}
-.contact-section .social-title {
-  color: var(--text-pri);
-  font-family: var(--font-open-sauce);
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%;
-}
-.social-icon-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 8px;
-}
-.social-icon-wrapper .social-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--accent-color);
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-.contact-section .contact {
-  color: var(--text-pri);
-  font-family: var(--font-open-sauce);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-}
-.contact-icon-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 10px;
-  margin-left: -0px;
-}
-.contact-icon-wrapper a {
-  color: var(--text-pri);
-  font-family: var(--font-open-sauce);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-}
-.contact-icon-wrapper .icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  background: var(--accent-color);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-@media only screen and (max-width: 375px) {
-}
-
-@media only screen and (max-width: 768px) {
-
-  .contact-section .contact-image-wrapper .box-section-title {
-    left: 0%;
-  }
-}
-@media only screen and (min-width: 576px) {
-  .media-item-carousel.owl-carousel .owl-nav .owl-prev,
-.media-item-carousel.owl-carousel .owl-nav .owl-next{
-  display: flex;
-}
-}
-@media only screen and (min-width: 768px) {
-  .contact-section {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  .nav-items {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-  }
-  .contact-section .contact-image {
-    max-width: 500px;
-    height: 400px;
-  }
-  .contact-section .contact-site-logo {
-    max-width: 300px;
-  }
-  .contact-section .contact {
-    font-size: 16px;
-  }
-  .contact-icon-wrapper a {
-    font-size: 16px;
-  }
-  .contact-icon-wrapper {
-    margin-left: 0;
-  }
-}
-@media only screen and (min-width: 1440px) {
-  .navbar-container .nav-items {
-    gap: 60px;
-  }
-  .contact-section .contact-image {
-    max-width: 760px;
-    height: 530px;
-  }
-  .contact-section .contact-site-logo {
-    max-width: 400px;
-  }
-  .contact-section .contact {
-    font-size: 20px;
-  }
-  .contact-icon-wrapper a {
-    font-size: 20px;
-  }
-  .contact-icon-wrapper {
-    margin-left: -42px;
-  }
-}
-.box-section-title {
-  color: var(--text-pri);
-  font-family: var(--font-copperplate);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 48px */
-  letter-spacing: 2px;
-  position: absolute;
-  top: -9%;
-  z-index: 10;
-  padding: 8px 24px;
-  background: var(--secoundary-color);
-  border-radius: 10px;
-  text-transform: uppercase;
-}
-.box-section-title {
-  font-size: 30px;
-}
-
-
-        
     </style>
 </head>
 <body>
-    <header class="header">
-      <nav class="navbar-container">
-        <div class="container">
-          <a href="../index.html" class="site-logo">
-            <img
-              src="../assets/images/site-logo.svg"
-              alt="Polk Associates logo"
-            />
-          </a>
+  <header class="header">
+    <nav class="navbar-container">
+      <div class="container">
+        <a href="../index.html" class="site-logo">
+          <img
+            src="../assets/images/site-logo.svg"
+            alt="Polk Associates logo"
+          />
+        </a>
 
-          <ul class="nav-items">
-            <li>
-              <a
-                href="../index.html#our-mission-section"
-                class="nav-item"
-                aria-label="Mission"
-                >Mission & Vision</a
-              >
-            </li>
-            <li>
-              <a href="../index.html#valuesContainer" class="nav-item" aria-label="Culture"
-                >Values</a
-              >
-            </li>
-            <li>
-              <a href="../index.html#founder-section" class="nav-item" aria-label="Culture"
-                >Culture</a
-              >
-            </li>
-            <li>
-              <a
-                href="../index.html#our-story-section"
-                class="nav-item"
-                aria-label="Our Story"
-                >Our Story</a
-              >
-            </li>
-            <li>
-              <a href="../index.html#our-work-section" class="nav-item" aria-label="Our Work"
-                >Our Work</a
-              >
-            </li>
-            <li>
-              <a href="../index.html#our-work-section" class="nav-item" aria-label="Our Work"
-                >Facilities</a
-              >
-            </li>
-            <li>
-              <a href="../media.html" class="nav-item media-item12" aria-label="Media"
-                >Media</a
-              >
-            </li>
-          </ul>
-          <button id="menu-open-btn" type="button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M13 18H20M4 6H20H4ZM4 12H20H4Z"
-                stroke="#40E0D0"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-      </nav>
-      <!-- navbar start -->
-
-      <!-- sidebar section start -->
-      <div class="sidebar">
-        <button id="menu-close-btn" type="button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M6 6L18 18M6 18L18 6L6 18Z"
-              stroke="#3F3F46"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
         <ul class="nav-items">
           <li>
-            <a href="../index.html#our-mission-section" class="nav-item" aria-label="Mission"
+            <a
+              href="../index.html#our-mission-section"
+              class="nav-item"
+              aria-label="Mission"
               >Mission & Vision</a
             >
           </li>
@@ -578,7 +250,10 @@
             >
           </li>
           <li>
-            <a href="../index.html#our-story-section" class="nav-item" aria-label="Our Story"
+            <a
+              href="../index.html#our-story-section"
+              class="nav-item"
+              aria-label="Our Story"
               >Our Story</a
             >
           </li>
@@ -592,177 +267,330 @@
               >Facilities</a
             >
           </li>
-
           <li>
-            <a href="../media.html" class="nav-item" aria-label="Media">Media</a>
+            <a href="../media.html" class="nav-item media-item12" aria-label="Media"
+              >Media</a
+            >
           </li>
         </ul>
+        <button id="menu-open-btn" type="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M13 18H20M4 6H20H4ZM4 12H20H4Z"
+              stroke="#40E0D0"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
       </div>
-    </header>
+    </nav>
+    <!-- navbar start -->
 
+    <!-- sidebar section start -->
+    <div class="sidebar">
+      <button id="menu-close-btn" type="button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M6 6L18 18M6 18L18 6L6 18Z"
+            stroke="#3F3F46"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <ul class="nav-items">
+        <li>
+          <a href="../index.html#our-mission-section" class="nav-item" aria-label="Mission"
+            >Mission & Vision</a
+          >
+        </li>
+        <li>
+          <a href="../index.html#valuesContainer" class="nav-item" aria-label="Culture"
+            >Values</a
+          >
+        </li>
+        <li>
+          <a href="../index.html#founder-section" class="nav-item" aria-label="Culture"
+            >Culture</a
+          >
+        </li>
+        <li>
+          <a href="../index.html#our-story-section" class="nav-item" aria-label="Our Story"
+            >Our Story</a
+          >
+        </li>
+        <li>
+          <a href="../index.html#our-work-section" class="nav-item" aria-label="Our Work"
+            >Our Work</a
+          >
+        </li>
+        <li>
+          <a href="../index.html#our-work-section" class="nav-item" aria-label="Our Work"
+            >Facilities</a
+          >
+        </li>
+
+        <li>
+          <a href="../media.html" class="nav-item" aria-label="Media">Media</a>
+        </li>
+      </ul>
+    </div>
+  </header>
     <main class="main-content">
         <h1 class="title">
-            <span>Civil Construction</span>
+            <span>Civil</span>
+            <span>Construction</span>
         </h1>
-        <div class="cards-container">
-            
+
+        <div class="cards-container" id="projectGrid">
             <div class="card">
-                <div class="image-container">
-                    <img src="Arkansas Levee Resurfacing.jpeg" alt="Titans">
-                </div>
-                <div class="card-content">
-                    <div class="card-description">Arkansas Levee Resurfacing
+                <div class="card-wrapper">
+                    <img src="Arkansas Levee Resurfacing.jpeg" alt="Arkansas Levee Resurfacing">
+                    <div class="card-content">
+                        <div class="card-description">Arkansas Levee Resurfacing</div>
                     </div>
                 </div>
             </div>
+
             <div class="card">
-                <div class="image-container">
-                    <img src="Big Slough Channel Restoration.jpg" alt="geodis">
-                </div>
-                <div class="card-content">
-                    
-                    <div class="card-description">The Big Slough Channel Restoration</div>
+                <div class="card-wrapper">
+                    <img src="Big Slough Channel Restoration.jpg" alt="The Big Slough Channel Restoration">
+                    <div class="card-content">
+                        <div class="card-description">The Big Slough Channel Restoration</div>
+                    </div>
                 </div>
             </div>
-           
         </div>
-      </div>
     </main>
 
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">&times;</button>
+            <div id="projectDetails"></div>
+        </div>
+    </div>
+
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        const projects = [
+            {
+                id: 'titans',
+                description: 'Arkansas Levee Resurfacing',
+                image: 'Arkansas Levee Resurfacing.jpeg',
+                details: `
+                    <p>Polk & Associates was the selected contractor by the U.S. Army Corps of Engineers to complete the Arkansas Levee Resurfacing Project. The work consisted of 22.61 miles of levee resurfacing and used 59,655 tons of stone.
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+</p>
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('active');
+                `,
+                photos: [
+                    'levee/levee1.jpeg',
+                    'levee/levee2.jpeg',
+                    'levee/levee3.jpg',
+                    'levee/levee4.jpg'
+                ]
+            },
+            {
+                id: 'geodis',
+                title: 'Nashville, TN',
+                description: 'The Big Slough Channel Restoration',
+                image: 'Big Slough Channel Restoration.jpg',
+                details: `
+                    <p>The Big Slough Channel Restoration consisted of 300 LF of channel excavation. We used R-200 to stabilize the East & West banks of the channel. We are proud to serve the U.S. Corps of Engineers.</p>
+
+                `,
+                photos: [
+                    'slough/slough1.jpeg',
+                    'slough/slough2.jpg',
+                    'slough/slough3.jpg',
+                    'slough/slough4.jpeg',
+                    'slough/slough5.jpg'
+                ]
             }
+        ];
+
+        function showProjectDetails(project) {
+            const modal = document.getElementById('projectModal');
+            const details = document.getElementById('projectDetails');
+            details.innerHTML = `
+                <div class="project-header">
+                    <img src="${project.image}" alt="${project.description}">
+                    <div class="project-header-info">
+                        <h2>${project.description}</h2>
+                        ${project.details}
+                    </div>
+                </div>
+                <div class="photo-gallery">
+                    <h3>Project Gallery</h3>
+                    <div class="gallery-grid">
+                        ${project.photos.map(photo => `
+                            <div class="gallery-item">
+                                <img src="${photo}" alt="Project photo">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Add click handlers to all cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const title = card.querySelector('.card-description').textContent.trim();
+                const project = projects.find(p => p.description === title);
+                if (project) {
+                    card.addEventListener('click', () => showProjectDetails(project));
+                }
+            });
         });
     </script>
-     <!-- contact section start -->
+         <!-- contact section start -->
  <section class="contact-section container container-section">
-    <div class="contact-details">
-      <img
-        class="contact-site-logo"
-        src="site-logo.svg"
-        alt="site logo"
-      />
-      <div class="contact">
-        229 Ward Cir Suite Suite C-22. Brentwood, TN 37027
-      </div>
-      <div class="contact-icon-wrapper">
-        <div class="icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-          >
-            <g clip-path="url(#clip0_14551_5819)">
-              <path
-                d="M14.2263 11.1504C13.8577 10.7667 13.4133 10.5615 12.9422 10.5615C12.4749 10.5615 12.0266 10.7629 11.6429 11.1466L10.4424 12.3432C10.3437 12.2901 10.2449 12.2407 10.1499 12.1913C10.0131 12.1229 9.88397 12.0583 9.7738 11.9899C8.64929 11.2757 7.62735 10.345 6.6472 9.14067C6.17232 8.54043 5.85321 8.03516 5.62147 7.52229C5.93299 7.23736 6.22171 6.94104 6.50284 6.65611C6.60921 6.54974 6.71559 6.43957 6.82196 6.33319C7.61975 5.5354 7.61975 4.50206 6.82196 3.70427L5.78482 2.66714C5.66705 2.54937 5.54549 2.4278 5.43152 2.30623C5.20357 2.07069 4.96424 1.82755 4.7173 1.59961C4.34879 1.2349 3.90811 1.04115 3.44463 1.04115C2.98115 1.04115 2.53286 1.2349 2.15296 1.59961L2.14536 1.60721L0.853692 2.91027C0.367417 3.39655 0.0900887 3.9892 0.0293043 4.67682C-0.0618723 5.78613 0.264844 6.81947 0.515579 7.49569C1.13102 9.15587 2.05038 10.6945 3.42183 12.3432C5.0858 14.3301 7.08789 15.8991 9.3749 17.0047C10.2487 17.4187 11.415 17.9088 12.718 17.9924C12.7978 17.9962 12.8814 18 12.9574 18C13.835 18 14.572 17.6847 15.1494 17.0578C15.1532 17.0502 15.1608 17.0464 15.1646 17.0388C15.3622 16.7995 15.5901 16.583 15.8294 16.3512C15.9928 16.1955 16.16 16.0321 16.3233 15.8611C16.6994 15.4698 16.897 15.014 16.897 14.5467C16.897 14.0756 16.6956 13.6235 16.3119 13.2436L14.2263 11.1504ZM15.5863 15.1507C15.5825 15.1507 15.5825 15.1545 15.5863 15.1507C15.4381 15.3103 15.2862 15.4546 15.1228 15.6142C14.8759 15.8497 14.6252 16.0967 14.3896 16.374C14.0059 16.7843 13.5538 16.9781 12.9612 16.9781C12.9042 16.9781 12.8434 16.9781 12.7864 16.9743C11.6581 16.9021 10.6096 16.4614 9.82319 16.0853C7.67294 15.0444 5.78482 13.5665 4.21583 11.6936C2.92036 10.1322 2.05418 8.68859 1.48053 7.13859C1.12722 6.19263 0.998055 5.45562 1.05504 4.7604C1.09303 4.31591 1.26399 3.94741 1.57931 3.63209L2.87477 2.33662C3.06093 2.16187 3.25847 2.06689 3.45222 2.06689C3.69156 2.06689 3.88531 2.21125 4.00688 2.33282L4.01828 2.34422C4.25002 2.56076 4.47036 2.78491 4.7021 3.02424C4.81987 3.14581 4.94144 3.26738 5.06301 3.39275L6.10014 4.42988C6.50284 4.83258 6.50284 5.20488 6.10014 5.60758C5.98997 5.71775 5.8836 5.82792 5.77343 5.9343C5.45431 6.26101 5.15039 6.56493 4.81987 6.86126C4.81227 6.86886 4.80468 6.87265 4.80088 6.88025C4.47416 7.20697 4.53495 7.52609 4.60333 7.74263L4.61473 7.77682C4.88446 8.43025 5.26436 9.0457 5.84181 9.77891L5.84561 9.78271C6.89414 11.0744 7.99966 12.0811 9.21914 12.8523C9.3749 12.9511 9.53446 13.0309 9.68642 13.1069C9.82319 13.1752 9.95235 13.2398 10.0625 13.3082C10.0777 13.3158 10.0929 13.3272 10.1081 13.3348C10.2373 13.3994 10.3588 13.4298 10.4842 13.4298C10.7995 13.4298 10.9971 13.2322 11.0617 13.1676L12.3609 11.8684C12.4901 11.7392 12.6952 11.5834 12.9346 11.5834C13.1701 11.5834 13.3639 11.7316 13.4816 11.8608L13.4892 11.8684L15.5825 13.9616C15.9738 14.3491 15.9738 14.748 15.5863 15.1507ZM9.72821 4.28172C10.7236 4.44888 11.6277 4.91996 12.3495 5.64177C13.0714 6.36359 13.5386 7.26775 13.7096 8.2631C13.7514 8.51383 13.9679 8.68859 14.2149 8.68859C14.2452 8.68859 14.2718 8.68479 14.3022 8.68099C14.5834 8.6354 14.7695 8.36947 14.7239 8.08834C14.5188 6.88405 13.9489 5.78613 13.0789 4.91616C12.209 4.04618 11.1111 3.47633 9.90676 3.27118C9.62564 3.22559 9.3635 3.41174 9.31412 3.68907C9.26473 3.9664 9.44708 4.23613 9.72821 4.28172ZM17.9797 7.94018C17.6416 5.95709 16.707 4.15255 15.271 2.71652C13.835 1.28049 12.0304 0.345932 10.0473 0.00781895C9.77 -0.0415684 9.50787 0.148383 9.45848 0.425712C9.41289 0.706839 9.59904 0.968972 9.88017 1.01836C11.6505 1.31848 13.2651 2.15807 14.5492 3.43834C15.8332 4.72241 16.669 6.33699 16.9692 8.10734C17.0109 8.35807 17.2275 8.53283 17.4744 8.53283C17.5048 8.53283 17.5314 8.52903 17.5618 8.52523C17.8391 8.48344 18.0291 8.21751 17.9797 7.94018Z"
-                fill="white"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_14551_5819">
-                <rect width="18" height="18" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-        </div>
-        <a href="tel:+6157305372">(615) 730-5372</a>
-      </div>
-      <div class="contact-icon-wrapper">
-        <div class="icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-          >
+  <div class="contact-details">
+    <img
+      class="contact-site-logo"
+      src="site-logo.svg"
+      alt="site logo"
+    />
+    <div class="contact">
+      229 Ward Cir Suite Suite C-22. Brentwood, TN 37027
+    </div>
+    <div class="contact-icon-wrapper">
+      <div class="icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+        >
+          <g clip-path="url(#clip0_14551_5819)">
             <path
-              d="M16.418 2.67188H1.58203C0.707941 2.67188 0 3.38421 0 4.25391V13.7461C0 14.621 0.713144 15.3281 1.58203 15.3281H16.418C17.2847 15.3281 18 14.6239 18 13.7461V4.25391C18 3.38576 17.2949 2.67188 16.418 2.67188ZM16.1964 3.72656L10.1187 9.77228C9.81984 10.0711 9.42258 10.2356 9 10.2356C8.57742 10.2356 8.18016 10.0711 7.88034 9.77129L1.80359 3.72656H16.1964ZM1.05469 13.5314V4.46924L5.61227 9.00281L1.05469 13.5314ZM1.80425 14.2734L6.36005 9.74661L7.13556 10.518C7.63358 11.0161 8.29571 11.2903 9 11.2903C9.70429 11.2903 10.3664 11.0161 10.8635 10.519L11.64 9.74661L16.1957 14.2734H1.80425ZM16.9453 13.5314L12.3877 9.00281L16.9453 4.46924V13.5314Z"
+              d="M14.2263 11.1504C13.8577 10.7667 13.4133 10.5615 12.9422 10.5615C12.4749 10.5615 12.0266 10.7629 11.6429 11.1466L10.4424 12.3432C10.3437 12.2901 10.2449 12.2407 10.1499 12.1913C10.0131 12.1229 9.88397 12.0583 9.7738 11.9899C8.64929 11.2757 7.62735 10.345 6.6472 9.14067C6.17232 8.54043 5.85321 8.03516 5.62147 7.52229C5.93299 7.23736 6.22171 6.94104 6.50284 6.65611C6.60921 6.54974 6.71559 6.43957 6.82196 6.33319C7.61975 5.5354 7.61975 4.50206 6.82196 3.70427L5.78482 2.66714C5.66705 2.54937 5.54549 2.4278 5.43152 2.30623C5.20357 2.07069 4.96424 1.82755 4.7173 1.59961C4.34879 1.2349 3.90811 1.04115 3.44463 1.04115C2.98115 1.04115 2.53286 1.2349 2.15296 1.59961L2.14536 1.60721L0.853692 2.91027C0.367417 3.39655 0.0900887 3.9892 0.0293043 4.67682C-0.0618723 5.78613 0.264844 6.81947 0.515579 7.49569C1.13102 9.15587 2.05038 10.6945 3.42183 12.3432C5.0858 14.3301 7.08789 15.8991 9.3749 17.0047C10.2487 17.4187 11.415 17.9088 12.718 17.9924C12.7978 17.9962 12.8814 18 12.9574 18C13.835 18 14.572 17.6847 15.1494 17.0578C15.1532 17.0502 15.1608 17.0464 15.1646 17.0388C15.3622 16.7995 15.5901 16.583 15.8294 16.3512C15.9928 16.1955 16.16 16.0321 16.3233 15.8611C16.6994 15.4698 16.897 15.014 16.897 14.5467C16.897 14.0756 16.6956 13.6235 16.3119 13.2436L14.2263 11.1504ZM15.5863 15.1507C15.5825 15.1507 15.5825 15.1545 15.5863 15.1507C15.4381 15.3103 15.2862 15.4546 15.1228 15.6142C14.8759 15.8497 14.6252 16.0967 14.3896 16.374C14.0059 16.7843 13.5538 16.9781 12.9612 16.9781C12.9042 16.9781 12.8434 16.9781 12.7864 16.9743C11.6581 16.9021 10.6096 16.4614 9.82319 16.0853C7.67294 15.0444 5.78482 13.5665 4.21583 11.6936C2.92036 10.1322 2.05418 8.68859 1.48053 7.13859C1.12722 6.19263 0.998055 5.45562 1.05504 4.7604C1.09303 4.31591 1.26399 3.94741 1.57931 3.63209L2.87477 2.33662C3.06093 2.16187 3.25847 2.06689 3.45222 2.06689C3.69156 2.06689 3.88531 2.21125 4.00688 2.33282L4.01828 2.34422C4.25002 2.56076 4.47036 2.78491 4.7021 3.02424C4.81987 3.14581 4.94144 3.26738 5.06301 3.39275L6.10014 4.42988C6.50284 4.83258 6.50284 5.20488 6.10014 5.60758C5.98997 5.71775 5.8836 5.82792 5.77343 5.9343C5.45431 6.26101 5.15039 6.56493 4.81987 6.86126C4.81227 6.86886 4.80468 6.87265 4.80088 6.88025C4.47416 7.20697 4.53495 7.52609 4.60333 7.74263L4.61473 7.77682C4.88446 8.43025 5.26436 9.0457 5.84181 9.77891L5.84561 9.78271C6.89414 11.0744 7.99966 12.0811 9.21914 12.8523C9.3749 12.9511 9.53446 13.0309 9.68642 13.1069C9.82319 13.1752 9.95235 13.2398 10.0625 13.3082C10.0777 13.3158 10.0929 13.3272 10.1081 13.3348C10.2373 13.3994 10.3588 13.4298 10.4842 13.4298C10.7995 13.4298 10.9971 13.2322 11.0617 13.1676L12.3609 11.8684C12.4901 11.7392 12.6952 11.5834 12.9346 11.5834C13.1701 11.5834 13.3639 11.7316 13.4816 11.8608L13.4892 11.8684L15.5825 13.9616C15.9738 14.3491 15.9738 14.748 15.5863 15.1507ZM9.72821 4.28172C10.7236 4.44888 11.6277 4.91996 12.3495 5.64177C13.0714 6.36359 13.5386 7.26775 13.7096 8.2631C13.7514 8.51383 13.9679 8.68859 14.2149 8.68859C14.2452 8.68859 14.2718 8.68479 14.3022 8.68099C14.5834 8.6354 14.7695 8.36947 14.7239 8.08834C14.5188 6.88405 13.9489 5.78613 13.0789 4.91616C12.209 4.04618 11.1111 3.47633 9.90676 3.27118C9.62564 3.22559 9.3635 3.41174 9.31412 3.68907C9.26473 3.9664 9.44708 4.23613 9.72821 4.28172ZM17.9797 7.94018C17.6416 5.95709 16.707 4.15255 15.271 2.71652C13.835 1.28049 12.0304 0.345932 10.0473 0.00781895C9.77 -0.0415684 9.50787 0.148383 9.45848 0.425712C9.41289 0.706839 9.59904 0.968972 9.88017 1.01836C11.6505 1.31848 13.2651 2.15807 14.5492 3.43834C15.8332 4.72241 16.669 6.33699 16.9692 8.10734C17.0109 8.35807 17.2275 8.53283 17.4744 8.53283C17.5048 8.53283 17.5314 8.52903 17.5618 8.52523C17.8391 8.48344 18.0291 8.21751 17.9797 7.94018Z"
               fill="white"
             />
-          </svg>
-        </div>
-        <a href="mailto:admin@polkconstructiontn.com"
-          >admin@polkconstructiontn.com</a
-        >
+          </g>
+          <defs>
+            <clipPath id="clip0_14551_5819">
+              <rect width="18" height="18" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
       </div>
-      <div class="contact">
-        Polk and Associates, a certified 8(a) Small Business and established
-        Government Contractor, is a premier General Contractor and
-        construction company known for its passion for the industry.
-      </div>
-      <div class="social-title">GET SOCIAL</div>
-      <div class="social-icon-wrapper">
-        <a
-          href="https://www.linkedin.com/in/reggie-polk-a06349a/?authType=NAME_SEARCH&authToken=0wv
-        6&locale=en_US&trkInfo=clickedVertical:mynetwork,clickedEntityId:30706278,authType:NAME_
-        SEARCH,idx:1-1-1,tarId:1457980448348,tas:Reggie%20polk"
-          target="_blank"
-          class="social-icon"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-          >
-            <path
-              d="M4.34227 2.17562C4.34227 3.37718 3.37022 4.35124 2.17113 4.35124C0.97205 4.35124 0 3.37718 0 2.17562C0 0.974058 0.97205 0 2.17113 0C3.37022 0 4.34227 0.974058 4.34227 2.17562Z"
-              fill="#173654"
-            />
-            <path
-              d="M0.296907 5.95041H4.00825V18H0.296907V5.95041Z"
-              fill="#173654"
-            />
-            <path
-              d="M9.98351 5.95041H6.27217V18H9.98351C9.98351 18 9.98351 14.2066 9.98351 11.8348C9.98351 10.4112 10.4372 8.9814 12.2474 8.9814C14.2932 8.9814 14.2809 10.8444 14.2714 12.2877C14.2589 14.1743 14.2887 16.0995 14.2887 18H18V11.6405C17.9686 7.57977 16.981 5.70868 13.732 5.70868C11.8025 5.70868 10.6065 6.64722 9.98351 7.49635V5.95041Z"
-              fill="#173654"
-            />
-          </svg>
-        </a>
-        <a
-          href="https://www.facebook.com/profile.php?id=100063989492787"
-          target="_blank"
-          class="social-icon"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="10"
-            height="18"
-            viewBox="0 0 10 18"
-            fill="none"
-          >
-            <path
-              d="M8.60904 8.50261L9.03957 5.76699H6.34624V3.99253C6.34624 3.24395 6.72178 2.51382 7.92812 2.51382H9.15339V0.184839C9.15339 0.184839 8.0419 0 6.97973 0C4.76059 0 3.31147 1.3105 3.31147 3.682V5.76699H0.845703V8.50261H3.31147V18H6.34624V8.50261H8.60904Z"
-              fill="#173654"
-            />
-          </svg>
-        </a>
-      </div>
+      <a href="tel:+6157305372">(615) 730-5372</a>
     </div>
-    <div class="contact-image-wrapper">
-      <h3 class="box-section-title">CONTACT US</h3>
-      <figure class="contact-image">
-        <img
-          src="contact.jpg"
-          alt="Contact section banner image"
-        />
-      </figure>
+    <div class="contact-icon-wrapper">
+      <div class="icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+        >
+          <path
+            d="M16.418 2.67188H1.58203C0.707941 2.67188 0 3.38421 0 4.25391V13.7461C0 14.621 0.713144 15.3281 1.58203 15.3281H16.418C17.2847 15.3281 18 14.6239 18 13.7461V4.25391C18 3.38576 17.2949 2.67188 16.418 2.67188ZM16.1964 3.72656L10.1187 9.77228C9.81984 10.0711 9.42258 10.2356 9 10.2356C8.57742 10.2356 8.18016 10.0711 7.88034 9.77129L1.80359 3.72656H16.1964ZM1.05469 13.5314V4.46924L5.61227 9.00281L1.05469 13.5314ZM1.80425 14.2734L6.36005 9.74661L7.13556 10.518C7.63358 11.0161 8.29571 11.2903 9 11.2903C9.70429 11.2903 10.3664 11.0161 10.8635 10.519L11.64 9.74661L16.1957 14.2734H1.80425ZM16.9453 13.5314L12.3877 9.00281L16.9453 4.46924V13.5314Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+      <a href="mailto:admin@polkconstructiontn.com"
+        >admin@polkconstructiontn.com</a
+      >
     </div>
-  </section>
-  <!-- contact section end -->
+    <div class="contact">
+      Polk and Associates, a certified 8(a) Small Business and established
+      Government Contractor, is a premier General Contractor and
+      construction company known for its passion for the industry.
+    </div>
+    <div class="social-title">GET SOCIAL</div>
+    <div class="social-icon-wrapper">
+      <a
+        href="https://www.linkedin.com/in/reggie-polk-a06349a/?authType=NAME_SEARCH&authToken=0wv
+      6&locale=en_US&trkInfo=clickedVertical:mynetwork,clickedEntityId:30706278,authType:NAME_
+      SEARCH,idx:1-1-1,tarId:1457980448348,tas:Reggie%20polk"
+        target="_blank"
+        class="social-icon"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+        >
+          <path
+            d="M4.34227 2.17562C4.34227 3.37718 3.37022 4.35124 2.17113 4.35124C0.97205 4.35124 0 3.37718 0 2.17562C0 0.974058 0.97205 0 2.17113 0C3.37022 0 4.34227 0.974058 4.34227 2.17562Z"
+            fill="#173654"
+          />
+          <path
+            d="M0.296907 5.95041H4.00825V18H0.296907V5.95041Z"
+            fill="#173654"
+          />
+          <path
+            d="M9.98351 5.95041H6.27217V18H9.98351C9.98351 18 9.98351 14.2066 9.98351 11.8348C9.98351 10.4112 10.4372 8.9814 12.2474 8.9814C14.2932 8.9814 14.2809 10.8444 14.2714 12.2877C14.2589 14.1743 14.2887 16.0995 14.2887 18H18V11.6405C17.9686 7.57977 16.981 5.70868 13.732 5.70868C11.8025 5.70868 10.6065 6.64722 9.98351 7.49635V5.95041Z"
+            fill="#173654"
+          />
+        </svg>
+      </a>
+      <a
+        href="https://www.facebook.com/profile.php?id=100063989492787"
+        target="_blank"
+        class="social-icon"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="18"
+          viewBox="0 0 10 18"
+          fill="none"
+        >
+          <path
+            d="M8.60904 8.50261L9.03957 5.76699H6.34624V3.99253C6.34624 3.24395 6.72178 2.51382 7.92812 2.51382H9.15339V0.184839C9.15339 0.184839 8.0419 0 6.97973 0C4.76059 0 3.31147 1.3105 3.31147 3.682V5.76699H0.845703V8.50261H3.31147V18H6.34624V8.50261H8.60904Z"
+            fill="#173654"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="contact-image-wrapper">
+    <h3 class="box-section-title">CONTACT US</h3>
+    <figure class="contact-image">
+      <img
+        src="contact.jpg"
+        alt="Contact section banner image"
+      />
+    </figure>
+  </div>
+</section>
 </body>
 </html>
