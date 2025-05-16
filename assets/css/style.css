@@ -118,7 +118,18 @@ a {
   text-decoration: none;
 }
 html {
+  scroll-padding-top: 100px;
   scroll-behavior: smooth;
+}
+#our-mission-section,
+#valuesContainer,
+
+#our-story-section,
+#our-work-section {
+  padding-top: 30px;
+}
+#founder-section{
+  padding-top: 130px;
 }
 img {
   pointer-events: none;
@@ -209,6 +220,10 @@ body {
 .meet-our-team-section svg {
   width: 15px;
   height: 15px;
+}
+.headline{
+  font-family: var(--font-copperplate);
+
 }
 
 .box-section-title {
@@ -463,7 +478,7 @@ header {
   width: 100%;
 }
 .mission-vision-section .container > * + * {
-  margin-top: 100px;
+  margin-top: 200px;
 }
 .mission-text-container .mission-details {
   width: 55%;
@@ -2114,7 +2129,7 @@ header {
     width: 65%;
   }
   .mission-vision-section .container > * + *{
-    margin-top: 50px;
+    margin-top: 100px;
   }
   .our-story-section .image-container .story-image{
     height: 400px;
