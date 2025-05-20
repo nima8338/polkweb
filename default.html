@@ -13,9 +13,12 @@
           right: 30px; /* Adjust for horizontal offset */
           width: 100px; /* Adjust size as needed */
           z-index: 1000; /* Ensures it stays above other content */
+          pointer-events: auto;
           animation: wiggle 3s infinite ease-in-out, float 6s infinite ease-in-out;
       }
-  
+      .hero-section video {
+  pointer-events: none; /* disables interaction */
+}
       @keyframes wiggle {
           0%, 100% { transform: rotate(0deg); }
           25% { transform: rotate(2deg); }
@@ -205,8 +208,10 @@
        
     </header>
     <!-- header section end -->
+    
+    <a href="award/index.html">
     <img src="Reggie Polk 2025 Award Logo Gradient.png" alt="Floating Image" class="floating-image">
-
+    </a>
 
     <video id="loader-video" autoplay muted>
       <source src="./assets/images/loader_video.mp4" type="video/mp4" />
